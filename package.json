@@ -1,0 +1,25 @@
+{
+  "name": "uikit3-extra-widths",
+  "version": "1.0.0",
+  "description": "Adds back in 7, 8, 9, 10 and 12 columns for UIkit 3",
+  "main": "uikit3/width-ex.css",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/OwenMelbz/uikit3-extra-widths.git"
+  },
+  "keywords": [
+    "uikit",
+    "uikit3",
+    "grid",
+    "10ths"
+  ],
+  "author": "Alek Volsk",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/OwenMelbz/uikit3-extra-widths/issues"
+  },
+  "homepage": "https://github.com/OwenMelbz/uikit3-extra-widths#readme"
+}

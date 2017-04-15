@@ -1,0 +1,167 @@
+// Name:         Width extended
+// Description:  Utilities for widths, *-7, *-8, *-9, *-10, *-12
+//
+// Component:   `uk-child-width-*`
+//              `uk-width-*`
+//
+//
+// ========================================================================
+
+/*
+@breakpoint-small:                             640px;  // Phone landscape
+@breakpoint-medium:                            960px;  // Tablet Landscape
+@breakpoint-large:                             1200px; // Desktop
+@breakpoint-xlarge:                            1600px; // Large Screens
+
+@breakpoint-xsmall-max:                        (@breakpoint-small - 1);
+@breakpoint-small-max:                         (@breakpoint-medium - 1);
+@breakpoint-medium-max:                        (@breakpoint-large - 1);
+@breakpoint-large-max:                         (@breakpoint-xlarge - 1);
+*/
+
+/* ========================================================================
+   Component: Width extended
+ ========================================================================== */
+
+
+/* Mixins
+ ========================================================================== */
+
+
+.getProperty(@col: 1, @cols: 1, @val: ~'width')
+{
+	@{val}: floor( @col * (100% / @cols) * 1000 ) / 1000;
+}
+
+.getCols (@i, @c, @sfx: none, @val: ~'width') when (@i < @c)
+{
+	& when not (@sfx = none)
+	{
+		.uk-width-@{i}-@{c}@{sfx} { .getProperty(@i, @c, @val); }
+	}
+	& when (@sfx = none)
+	{
+		.uk-width-@{i}-@{c} { .getProperty(@i, @c, @val); }
+	}
+	.getCols(@i + 1, @c, @sfx, @val);
+}
+
+
+
+/* Equal child widths
+ ========================================================================== */
+
+
+.uk-child-width-1-7 > *  { .getProperty(1,7); }
+.uk-child-width-1-8 > *  { .getProperty(1,8); }
+.uk-child-width-1-9 > *  { .getProperty(1,9); }
+.uk-child-width-1-10 > * { .getProperty(1,10); }
+.uk-child-width-1-12 > * { .getProperty(1,12); }
+
+/* Phone landscape and bigger */
+@media (min-width: @breakpoint-small) {
+
+	 .uk-child-width-1-7\@s > * { .getProperty(1,7); }
+	 .uk-child-width-1-8\@s > * { .getProperty(1,8); }
+	 .uk-child-width-1-9\@s > * { .getProperty(1,9); }
+	.uk-child-width-1-10\@s > * { .getProperty(1,10); }
+	.uk-child-width-1-12\@s > * { .getProperty(1,12); }
+
+}
+
+/* Tablet landscape and bigger */
+@media (min-width: @breakpoint-medium) {
+
+	 .uk-child-width-1-7\@m > * { .getProperty(1,7); }
+	 .uk-child-width-1-8\@m > * { .getProperty(1,8); }
+	 .uk-child-width-1-9\@m > * { .getProperty(1,9); }
+	.uk-child-width-1-10\@m > * { .getProperty(1,10); }
+	.uk-child-width-1-12\@m > * { .getProperty(1,12); }
+
+}
+
+/* Desktop and bigger */
+@media (min-width: @breakpoint-large) {
+
+	 .uk-child-width-1-7\@l > * { .getProperty(1,7); }
+	 .uk-child-width-1-8\@l > * { .getProperty(1,8); }
+	 .uk-child-width-1-9\@l > * { .getProperty(1,9); }
+	.uk-child-width-1-10\@l > * { .getProperty(1,10); }
+	.uk-child-width-1-12\@l > * { .getProperty(1,12); }
+
+}
+
+/* Large screen and bigger */
+@media (min-width: @breakpoint-xlarge) {
+
+	 .uk-child-width-1-7\@xl > * { .getProperty(1,7); }
+	 .uk-child-width-1-8\@xl > * { .getProperty(1,8); }
+	 .uk-child-width-1-9\@xl > * { .getProperty(1,9); }
+	.uk-child-width-1-10\@xl > * { .getProperty(1,10); }
+	.uk-child-width-1-12\@xl > * { .getProperty(1,12); }
+
+}
+
+
+/* Single Widths
+ ========================================================================== */
+
+
+.getCols(1, 7);
+.getCols(1, 8);
+.getCols(1, 9);
+.getCols(1, 10);
+.getCols(1, 12);
+
+
+/* Phone landscape and bigger */
+@media (min-width: @breakpoint-small) {
+
+	.getCols(1, 7,  ~'\@s');
+	.getCols(1, 8,  ~'\@s');
+	.getCols(1, 9,  ~'\@s');
+	.getCols(1, 10, ~'\@s');
+	.getCols(1, 12, ~'\@s');
+
+}
+
+/* Tablet landscape and bigger */
+@media (min-width: @breakpoint-medium) {
+
+	.getCols(1, 7,  ~'\@m');
+	.getCols(1, 8,  ~'\@m');
+	.getCols(1, 9,  ~'\@m');
+	.getCols(1, 10, ~'\@m');
+	.getCols(1, 12, ~'\@m');
+
+}
+
+/* Desktop and bigger */
+@media (min-width: @breakpoint-large) {
+
+	.getCols(1, 7,  ~'\@l');
+	.getCols(1, 8,  ~'\@l');
+	.getCols(1, 9,  ~'\@l');
+	.getCols(1, 10, ~'\@l');
+	.getCols(1, 12, ~'\@l');
+
+}
+
+/* Large screen and bigger */
+@media (min-width: @breakpoint-xlarge) {
+
+	.getCols(1, 7,  ~'\@xl');
+	.getCols(1, 8,  ~'\@xl');
+	.getCols(1, 9,  ~'\@xl');
+	.getCols(1, 10, ~'\@xl');
+	.getCols(1, 12, ~'\@xl');
+
+}
+
+
+// Hooks
+// ========================================================================
+
+.hook-width-ex-misc;
+
+.hook-width-ex-misc() {}
