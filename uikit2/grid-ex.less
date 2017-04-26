@@ -25,6 +25,15 @@
    Component: Width extended
  ========================================================================== */
 
+@grid-gutter-medium-horizontal:                 50px;
+@grid-gutter-medium-vertical:                   50px;
+
+@grid-gutter-mini-horizontal:                   10px;
+@grid-gutter-mini-vertical:                     10px;
+
+@grid-gutter-micro-horizontal:                  2px;
+@grid-gutter-micro-vertical:                    2px;
+
 
 /* Mixins
  ========================================================================== */
@@ -39,6 +48,19 @@
 {
 	.uk-@{cl}-@{i}-@{c} { .getProperty(@i, @c, @val); }
 	.getCols(@cl, @i + 1, @c, @val);
+}
+
+
+.getPropertyPP(@col: 1, @cols: 1, @val: ~'width')
+{
+	@v: floor( @col * (100% / @cols) * 1000 ) / 1000;
+	@{val}: -@v;
+}
+
+.getColsPP(@cl, @i, @c, @val: ~'width') when (@i < @c)
+{
+	.uk-@{cl}-@{i}-@{c} { .getPropertyPP(@i, @c, @val); }
+	.getColsPP(@cl, @i + 1, @c, @val);
 }
 
 
@@ -252,6 +274,39 @@
 }
 
 
+/* grid-medium
+ ========================================================================== */
+
+.uk-grid-medium { margin-left: -@grid-gutter-medium-horizontal; }
+.uk-grid-medium > * { padding-left: @grid-gutter-medium-horizontal; }
+
+.uk-grid-medium + .uk-grid-medium,
+.uk-grid-medium > .uk-grid-margin,
+.uk-grid-medium > * > .uk-panel + .uk-panel { margin-top: @grid-gutter-medium-vertical; }
+
+
+/* grid-mini
+ ========================================================================== */
+
+.uk-grid-mini { margin-left: -@grid-gutter-mini-horizontal; }
+.uk-grid-mini > * { padding-left: @grid-gutter-mini-horizontal; }
+
+.uk-grid-mini + .uk-grid-mini,
+.uk-grid-mini > .uk-grid-margin,
+.uk-grid-mini > * > .uk-panel + .uk-panel { margin-top: @grid-gutter-mini-vertical; }
+
+
+/* grid-micro
+ ========================================================================== */
+
+.uk-grid-micro { margin-left: -@grid-gutter-micro-horizontal; }
+.uk-grid-micro > * { padding-left: @grid-gutter-micro-horizontal; }
+
+.uk-grid-micro + .uk-grid-micro,
+.uk-grid-micro > .uk-grid-margin,
+.uk-grid-micro > * > .uk-panel + .uk-panel { margin-top: @grid-gutter-micro-vertical; }
+
+
 /* Sub-object: `uk-push-*` and `uk-pull-*`
  ========================================================================== */
 
@@ -262,18 +317,55 @@
 
 @media (min-width: @breakpoint-medium) {
 
-	.getCols(~'push', 1, 7, ~'left');
-	.getCols(~'push', 1, 8, ~'left');
-	.getCols(~'push', 1, 9, ~'left');
+	.getCols(~'push', 1, 7,  ~'left');
+	.getCols(~'push', 1, 8,  ~'left');
+	.getCols(~'push', 1, 9,  ~'left');
 	.getCols(~'push', 1, 12, ~'left');
-
-	.getCols(~'pull', 1, 7, ~'left');
-	.getCols(~'pull', 1, 8, ~'left');
-	.getCols(~'pull', 1, 9, ~'left');
-	.getCols(~'pull', 1, 12, ~'left');
+	
+	.getColsPP(~'pull', 1, 7,  ~'left');
+	.getColsPP(~'pull', 1, 8,  ~'left');
+	.getColsPP(~'pull', 1, 9,  ~'left');
+	.getColsPP(~'pull', 1, 12, ~'left');
 
 }
 
+
+/*
+ * Source ordering
+ * Works only with `uk-width-large-*`
+ */
+ 
+@media (min-width: @breakpoint-large) {
+
+	[class*="uk-large-push-"],
+	[class*="uk-large-pull-"]
+	{
+		position: relative;
+	}
+	
+	.getCols(~'large-push', 1, 2,  ~'left');
+	.getCols(~'large-push', 1, 3,  ~'left');
+	.getCols(~'large-push', 1, 4,  ~'left');
+	.getCols(~'large-push', 1, 5,  ~'left');
+	.getCols(~'large-push', 1, 6,  ~'left');
+	.getCols(~'large-push', 1, 7,  ~'left');
+	.getCols(~'large-push', 1, 8,  ~'left');
+	.getCols(~'large-push', 1, 9,  ~'left');
+	.getCols(~'large-push', 1, 10, ~'left');
+	.getCols(~'large-push', 1, 12, ~'left');
+	
+	.getColsPP(~'large-pull', 1, 2,  ~'left');
+	.getColsPP(~'large-pull', 1, 3,  ~'left');
+	.getColsPP(~'large-pull', 1, 4,  ~'left');
+	.getColsPP(~'large-pull', 1, 5,  ~'left');
+	.getColsPP(~'large-pull', 1, 6,  ~'left');
+	.getColsPP(~'large-pull', 1, 7,  ~'left');
+	.getColsPP(~'large-pull', 1, 8,  ~'left');
+	.getColsPP(~'large-pull', 1, 9,  ~'left');
+	.getColsPP(~'large-pull', 1, 10, ~'left');
+	.getColsPP(~'large-pull', 1, 12, ~'left');
+
+}
 
 
 // Hooks
