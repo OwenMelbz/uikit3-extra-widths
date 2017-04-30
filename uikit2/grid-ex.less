@@ -279,6 +279,7 @@
 
 .uk-grid-medium { margin-left: -@grid-gutter-medium-horizontal; }
 .uk-grid-medium > * { padding-left: @grid-gutter-medium-horizontal; }
+.uk-grid-medium.uk-grid-divider > * { padding-right: @grid-gutter-medium-horizontal; }
 
 .uk-grid-medium + .uk-grid-medium,
 .uk-grid-medium > .uk-grid-margin,
@@ -290,6 +291,7 @@
 
 .uk-grid-mini { margin-left: -@grid-gutter-mini-horizontal; }
 .uk-grid-mini > * { padding-left: @grid-gutter-mini-horizontal; }
+.uk-grid-mini.uk-grid-divider > * { padding-right: @grid-gutter-mini-horizontal; }
 
 .uk-grid-mini + .uk-grid-mini,
 .uk-grid-mini > .uk-grid-margin,
@@ -301,10 +303,24 @@
 
 .uk-grid-micro { margin-left: -@grid-gutter-micro-horizontal; }
 .uk-grid-micro > * { padding-left: @grid-gutter-micro-horizontal; }
+.uk-grid-micro.uk-grid-divider > * { padding-right: @grid-gutter-micro-horizontal; }
 
 .uk-grid-micro + .uk-grid-micro,
 .uk-grid-micro > .uk-grid-margin,
 .uk-grid-micro > * > .uk-panel + .uk-panel { margin-top: @grid-gutter-micro-vertical; }
+
+
+
+@media (max-width: @breakpoint-small-max)
+{
+	.uk-grid:not(.uk-grid-mini):not(.uk-grid-micro) { margin-left: -@utility-container-padding-horizontal; }
+	.uk-grid:not(.uk-grid-mini):not(.uk-grid-micro) > * { padding-left: @utility-container-padding-horizontal; }
+	.uk-grid:not(.uk-grid-mini):not(.uk-grid-micro).uk-grid-divider > * { padding-right: @utility-container-padding-horizontal; }
+	
+	.uk-grid:not(.uk-grid-mini):not(.uk-grid-micro) + .uk-grid:not(.uk-grid-mini):not(.uk-grid-micro),
+	.uk-grid:not(.uk-grid-mini):not(.uk-grid-micro) > .uk-grid-margin,
+	.uk-grid:not(.uk-grid-mini):not(.uk-grid-micro) > * > .uk-panel + .uk-panel { margin-top: @utility-container-padding-horizontal; }
+}
 
 
 /* Sub-object: `uk-push-*` and `uk-pull-*`
